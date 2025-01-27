@@ -1,0 +1,33 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<div class="max-w-5xl mx-auto w-full">
+    <ComponentDoc MetaData="@_meta" Topics="@_topics" />
+</div>
+
+
+@code {
+    private RenderFragment ButtonContent = b => b.AddContent(0, "Hello, World!");
+    private ComponentMetaData? _meta = null;
+
+    private IEnumerable<Topic> _topics = [
+        new()
+        {
+            Name = "Default"
+        }
+    ];
+
+    protected override void OnInitialized()
+    {
+        _meta = new()
+            {
+                Name = nameof(Button),
+                Component = typeof(Button),
+                Parameters = [
+                        new ComponentParameter{ Name = nameof(Button.Href), Value = "" },
+            new ComponentParameter { Name = nameof(Button.Content), Value = ButtonContent }
+                    ]
+            };
+    }
+}

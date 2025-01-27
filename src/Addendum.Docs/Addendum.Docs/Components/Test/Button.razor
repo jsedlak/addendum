@@ -1,0 +1,10 @@
+﻿<a class="flex items-center gap-2 rounded bg-indigo-600 hover:bg-indigo-800 transition text-white px-6 py-3" href="@Href">
+    @Content
+</a>
+@code {
+    [Parameter]
+    public required RenderFragment Content { get; set; }
+
+    [Parameter]
+    public required string Href { get; set; }
+}

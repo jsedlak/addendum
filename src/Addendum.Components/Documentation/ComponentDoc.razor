@@ -1,0 +1,11 @@
+﻿@if (MetaData is not null)
+{
+    <div>
+        <h1 class="text-2xl font-bold my-6">@MetaData.Name</h1>
+
+        @foreach (var topic in Topics)
+        {
+            <TopicRendering MetaData="@MetaData" Topic="@topic" />
+        }
+    </div>
+}
