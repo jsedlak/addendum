@@ -1,5 +1,5 @@
 ﻿@inherits LayoutComponentBase
-
+@inject IAddendumService Addendum
 <div class="w-full h-full max-w-full flex font-poppins">
     @* SIDEBAR *@
     <div class="w-1/4 max-w-[300px] flex-col gap-6 bg-indigo-800 h-full text-white overflow-scroll">
@@ -8,20 +8,21 @@
         </div>
 
         <div>
-            @foreach (var i in Enumerable.Range(0, 100))
+            @foreach (var category in Addendum.GetCategories())
             {
-                if (i % 10 == 0)
-                {
+                <div class="mb-3">
                     <div class="p-3 text-gray-400 font-bold">
-                        Heading @i
+                        @category.Name
                     </div>
-                }
-                else
-                {
-                    <div class="px-3 py-1">
-                        <a class="cursor-pointer" href="#">Component @i</a>
-                    </div>
-                }
+                    @foreach(var component in category.Components.OrderBy(m => m.Name))
+                    {
+                        <div class="px-3 py-1">
+                            <a class="cursor-pointer" href="/docs/@category.Name/@component.Name">
+                                @component.Name
+                            </a>
+                        </div>
+                    }
+                </div>
             }
         </div>
     </div>

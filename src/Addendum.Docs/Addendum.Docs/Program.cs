@@ -1,5 +1,6 @@
-using Addendum.Docs.Client.Pages;
 using Addendum.Docs.Components;
+using Addendum;
+using Addendum.Docs.Components.Test;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddAddendum()
+    .WithAssembly(typeof(Button).Assembly)
+    .Build();
 
 var app = builder.Build();
 
