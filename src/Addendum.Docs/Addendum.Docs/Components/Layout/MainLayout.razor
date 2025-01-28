@@ -1,11 +1,47 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    @Body
+<div class="w-full h-full max-w-full flex font-poppins">
+    @* SIDEBAR *@
+    <div class="w-1/4 max-w-[300px] flex-col gap-6 bg-indigo-800 h-full text-white overflow-scroll">
+        <div class="text-center p-6">
+            <h2 class="text-3xl font-playwrite">addendum</h2>
+        </div>
+
+        <div>
+            @foreach (var i in Enumerable.Range(0, 100))
+            {
+                if (i % 10 == 0)
+                {
+                    <div class="p-3 text-gray-400 font-bold">
+                        Heading @i
+                    </div>
+                }
+                else
+                {
+                    <div class="px-3 py-1">
+                        <a class="cursor-pointer" href="#">Component @i</a>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+    <div class="flex-col flex-grow">
+        <div class="bg-gray-300 border-bottom border-gray-800 shadow-lg p-6">
+            Settings and stuff in the top bar...
+        </div>
+
+        <div class="p-6">
+            @Body
+
+            <div id="blazor-error-ui" data-nosnippet>
+                An unhandled error has occurred.
+                <a href="." class="reload">Reload</a>
+                <span class="dismiss">🗙</span>
+            </div>
+        </div>
+    </div>
+    
 </div>
 
-<div id="blazor-error-ui" data-nosnippet>
-    An unhandled error has occurred.
-    <a href="." class="reload">Reload</a>
-    <span class="dismiss">🗙</span>
-</div>
+
