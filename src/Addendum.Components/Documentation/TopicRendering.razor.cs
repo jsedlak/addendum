@@ -51,11 +51,20 @@ public partial class TopicRendering : ComponentBase
 
         var sb = new StringBuilder();
 
+        sb.AppendLine($"@using {type.Namespace}");
+        sb.AppendLine("");
         sb.AppendLine($"<{type.Name}");
 
-        foreach(var parameter in GetParameterCollection())
+        var allParameters = GetParameterCollection().ToArray();
+
+        foreach (var parameter in allParameters)
         {
             if(parameter.Value is null)
+            {
+                continue;
+            }
+            
+            if(parameter.Value is RenderFragment)
             {
                 continue;
             }
@@ -63,7 +72,21 @@ public partial class TopicRendering : ComponentBase
             sb.AppendLine($"  {parameter.Key}=\"{parameter.Value.ToString()}\"");
         }
 
-        sb.AppendLine(">");
+        if(allParameters.Any(m => m.Value is RenderFragment))
+        {
+            sb.AppendLine(">");
+
+            foreach(var fragmentParameter in allParameters.Where(m => m.Value is RenderFragment))
+            { 
+                sb.AppendLine($"  <{fragmentParameter.Key}>...</{fragmentParameter.Key}>");
+            }
+
+            sb.AppendLine($"</{type.Name}>");
+        }
+        else
+        {
+            sb.AppendLine("/>");
+        }
 
         return new MarkupString(
              HttpUtility.HtmlEncode(sb.ToString())
