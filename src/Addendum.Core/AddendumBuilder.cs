@@ -61,7 +61,7 @@ internal class AddendumBuilder : IAddendumBuilder
                 ..category.Components,
                 new ComponentMetaData() {
                     Name = attr.Name ?? componentType.Name,
-                    Component = componentType
+                    ComponentType = componentType.AssemblyQualifiedName!
                 }
             ];
         }

@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-	<Target Name="TailwindCliBuild" BeforeTargets="Compile">
+	<Target Name="TailwindCliBuild" BeforeTargets="PrepareForBuild">
 		<Exec Command="npx @tailwindcss/cli -i ./Styles/app.css -o ./wwwroot/app.css" />
 	</Target>
 

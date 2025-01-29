@@ -3,7 +3,7 @@
 <PageTitle>Home</PageTitle>
 
 <div class="max-w-5xl mx-auto w-full">
-    <ComponentDoc MetaData="@_meta" Topics="@_topics" />
+    <ComponentDoc MetaData="@_meta" Topics="@_topics" @rendermode="InteractiveAuto" />
 </div>
 
 
@@ -23,11 +23,11 @@
         _meta = new()
             {
                 Name = nameof(Button),
-                Component = typeof(Button),
+                ComponentType = typeof(Button).AssemblyQualifiedName!,
                 Parameters = [
-                        new ComponentParameter{ Name = nameof(Button.Href), Value = "" },
-            new ComponentParameter { Name = nameof(Button.Content), Value = ButtonContent }
-                    ]
+                    new ComponentParameter{ Name = nameof(Button.Href), Value = "" },
+                    new ComponentParameter { Name = nameof(Button.Content), Value = ButtonContent }
+                ]
             };
     }
 }
