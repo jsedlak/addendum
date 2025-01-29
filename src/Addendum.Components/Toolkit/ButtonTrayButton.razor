@@ -1,0 +1,14 @@
+﻿<button class="cursor-pointer group flex items-center rounded-md space-x-2 m-1 py-2 px-2 text-sm font-semibold not-data-focus-visible-added:focus:outline-hidden data-selected:bg-black lg:px-3"
+        role="tab" 
+    type="button"
+    tabindex="0"
+        data-headlessui-state="selected"
+    data-selected="@IsActive"
+    aria-selected="@IsActive"
+    @onclick="@OnButtonClicked">
+    @if(Icon is not null) 
+    {
+        @Icon
+    }
+    <span class="sr-only lg:not-sr-only text-slate-600 group-data-selected:text-white">@Text</span>
+</button>

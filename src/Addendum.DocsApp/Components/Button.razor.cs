@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace Addendum.Docs.Components.Test;
+namespace Addendum.DocsApp.Components;
 
 [AutoDoc(Category = "Content")]
-public partial class Button
+public partial class Button : ComponentBase
 {
     [Parameter]
     public required RenderFragment Content { get; set; }
